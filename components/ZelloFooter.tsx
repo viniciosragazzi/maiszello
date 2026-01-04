@@ -9,7 +9,7 @@ export function ZelloFooter() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-8">
           {/* Logo and About */}
           <div className="space-y-4">
-            <Image src="/images/2.png" alt="+Zello - Planos de Saúde" width={160} height={53} className="h-10 w-auto" />
+            <Image src="/images/1.png" alt="+Zello - Planos de Saúde" width={160} height={53} className="h-10 w-auto" />
             <p className="text-sm text-muted-foreground text-pretty">
               A +Zello nasceu para simplificar o acesso à saúde de qualidade. Localizados no Rio de Janeiro, atendemos
               com a transparência e a seriedade que a sua segurança exige.

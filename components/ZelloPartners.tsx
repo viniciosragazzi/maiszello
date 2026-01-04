@@ -4,11 +4,11 @@ import Image from "next/image"
 
 export function ZelloPartners() {
   const partners = [
-    { name: "Unimed", placeholder: "unimed" },
-    { name: "Porto Seguro", placeholder: "porto-seguro" },
-    { name: "Bradesco Saúde", placeholder: "bradesco" },
-    { name: "Amil", placeholder: "amil" },
-    { name: "SulAmérica", placeholder: "sulamerica" },
+    { name: "Unimed", logo: "/images/unimed.png" },
+    { name: "Porto Seguro", logo: "/images/portoseguro.png" },
+    { name: "Bradesco Saúde", logo: "/images/bradesco.webp" },
+    { name: "Amil", logo: "/images/amil.png" },
+    { name: "SulAmérica", logo: "/images/sulamerica-saude-logo.webp" },
   ]
 
   return (
@@ -31,12 +31,7 @@ export function ZelloPartners() {
               style={{ animationDelay: `${index * 100}ms` }}
             >
               <div className="relative w-32 h-16 grayscale group-hover:grayscale-0 transition-all">
-                <Image
-                  src={`/.jpg?height=80&width=160&query=${partner.placeholder}-logo`}
-                  alt={partner.name}
-                  fill
-                  className="object-contain"
-                />
+                <Image src={partner.logo || "/placeholder.svg"} alt={partner.name} fill className="object-contain" />
               </div>
             </div>
           ))}
