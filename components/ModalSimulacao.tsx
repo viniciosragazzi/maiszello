@@ -1,7 +1,7 @@
 'use client'
 import { useState, useEffect } from "react";
 
-const WHATSAPP_NUMBER = "5599999999999"; // Substitua pelo número real
+const WHATSAPP_NUMBER = "5521972999798"; // Substitua pelo número real
 
 export default function ModalSimulacao() {
   const [open, setOpen] = useState(false);

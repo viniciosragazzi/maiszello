@@ -2,7 +2,7 @@
 import Image from "next/image";
 import React from "react";
 
-const WHATSAPP_NUMBER = "5599999999999"; // Substitua pelo número real
+const WHATSAPP_NUMBER = "5521972999798"; // Substitua pelo número real
 
 function sendToWhatsApp(tipo: string) {
   const msg = encodeURIComponent(
