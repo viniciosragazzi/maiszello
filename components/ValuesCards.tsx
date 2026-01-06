@@ -29,9 +29,10 @@ export default function ValuesCards() {
               <div className="my-3 text-5xl md:text-6xl font-extrabold text-[#3f17cc] drop-shadow-sm">R$ 99,90</div>
               <div className="text-gray-500 text-lg mb-4">a partir de</div>
               <ul className="text-gray-700 text-base mb-6 space-y-1">
-                <li>✔ Sem carência para urgência e emergência</li>
                 <li>✔ Cobertura nacional</li>
                 <li>✔ Diversas operadoras</li>
+                <li>✔ Redução de Carência </li>
+
               </ul>
               <button
                 className="w-full bg-[#3f17cc] text-white py-3 rounded-lg font-bold text-lg hover:bg-[#2a128a] transition-all shadow-md mt-auto"
@@ -55,6 +56,7 @@ export default function ValuesCards() {
                 <li>✔ A partir de 2 vidas</li>
                 <li>✔ Cobertura nacional</li>
                 <li>✔ Condições especiais para empresas</li>
+                <li>✔ Redução de Carência </li>
               </ul>
               <button
                 className="w-full bg-[#3f17cc] text-white py-3 rounded-lg font-bold text-lg hover:bg-[#2a128a] transition-all shadow-md mt-auto"
