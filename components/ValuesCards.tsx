@@ -1,4 +1,5 @@
 'use client'
+import Image from "next/image";
 import React from "react";
 
 const WHATSAPP_NUMBER = "5599999999999"; // Substitua pelo número real
@@ -21,8 +22,7 @@ export default function ValuesCards() {
           {/* Card Adesão */}
           <div className="bg-white rounded-3xl shadow-2xl border-2 border-[#e3e6f0] flex flex-col items-center p-10 transition-all hover:scale-[1.03] min-h-[420px]">
             <div className="w-full h-36 bg-gray-100 rounded-xl mb-6 flex items-center justify-center">
-              {/* Imagem de família aqui futuramente */}
-              <span className="text-gray-300 text-5xl">📷</span>
+     <Image src="/images/familia-card.png" alt="Camera Icon" width={800} height={400} />
             </div>
             <div className="text-center flex-1 flex flex-col justify-between">
               <span className="text-base font-semibold text-[#3f17cc] uppercase tracking-wider">Planos de Adesão</span>
@@ -43,9 +43,9 @@ export default function ValuesCards() {
           </div>
           {/* Card Empresarial */}
           <div className="bg-white rounded-3xl shadow-2xl border-2 border-[#e3e6f0] flex flex-col items-center p-10 transition-all hover:scale-[1.03] min-h-[420px]">
-            <div className="w-full h-36 bg-gray-100 rounded-xl mb-6 flex items-center justify-center">
-              {/* Imagem de empresa aqui futuramente */}
-              <span className="text-gray-300 text-5xl">🏢</span>
+            <div className="w-full h-36 bg-gray-100 rounded  rounded-xl mb-6 flex items-center justify-center">
+                <Image src="/images/empresarial-card.png" alt="Camera Icon" width={800} height={400} />
+
             </div>
             <div className="text-center flex-1 flex flex-col justify-between">
               <span className="text-base font-semibold text-[#3f17cc] uppercase tracking-wider">Planos Empresariais</span>
