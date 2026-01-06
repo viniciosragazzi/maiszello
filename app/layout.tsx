@@ -3,6 +3,8 @@ import type { Metadata } from "next"
 import { Figtree, Inter, Geist_Mono } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
 import "./globals.css"
+import ChatWidget from "../components/ChatWidget"
+import ModalSimulacao from "../components/ModalSimulacao"
 
 const figtree = Figtree({
   subsets: ["latin"],
@@ -40,6 +42,8 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${inter.variable} ${figtree.variable} ${geistMono.variable} font-sans antialiased`}>
         {children}
+        <ModalSimulacao />
+        <ChatWidget />
         <Analytics />
       </body>
     </html>

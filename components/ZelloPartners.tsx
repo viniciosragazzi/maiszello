@@ -7,8 +7,11 @@ export function ZelloPartners() {
     { name: "Unimed", logo: "/images/unimed.png" },
     { name: "Porto Seguro", logo: "/images/portoseguro.png" },
     { name: "Bradesco Saúde", logo: "/images/bradesco.webp" },
+    { name: "Assim", logo: "/images/assimsaude.png" },
+    { name: "Klini", logo: "/images/klini.webp" },
     { name: "Amil", logo: "/images/amil.png" },
     { name: "SulAmérica", logo: "/images/sulamerica-saude-logo.webp" },
+    { name: "MedSenior", logo: "/images/medsenior.png" },
   ]
 
   return (
