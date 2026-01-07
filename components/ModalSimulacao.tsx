@@ -1,26 +1,52 @@
 'use client'
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 const WHATSAPP_NUMBER = "5521972999798"; // Substitua pelo número real
 
-export default function ModalSimulacao() {
-  const [open, setOpen] = useState(false);
+interface ModalSimulacaoProps {
+  open: boolean;
+  onClose: () => void;
+}
+
+export default function ModalSimulacao({ open, onClose }: ModalSimulacaoProps) {
   const [nome, setNome] = useState("");
+  const [idade, setIdade] = useState("");
+  const [email, setEmail] = useState("");
   const [numero, setNumero] = useState("");
+  const [qtdPessoas, setQtdPessoas] = useState("");
+  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>("idle");
+  const [error, setError] = useState("");
 
-  useEffect(() => {
-    setOpen(true);
-  }, []);
-
-  function handleSimular() {
-    if (!nome.trim() || !numero.trim()) return;
-    const msg = encodeURIComponent(
-      `Olá! Quero simular meu plano de saúde.\nNome: ${nome}\nTelefone: ${numero}`
-    );
-    if (typeof window !== "undefined") {
-      window.location.href = `https://wa.me/${WHATSAPP_NUMBER}?text=${msg}`;
+  async function handleSimular() {
+    if (!nome.trim() || !numero.trim() || !idade.trim() || !email.trim() || !qtdPessoas.trim()) return;
+    setStatus("loading");
+    setError("");
+    try {
+      const res = await fetch("/api/send-lead", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ nome, idade, email, numero, qtdPessoas }),
+      });
+      if (res.ok) {
+        setStatus("success");
+        setNome("");
+        setIdade("");
+        setEmail("");
+        setNumero("");
+        setQtdPessoas("");
+        setTimeout(() => {
+          setStatus("idle");
+          onClose();
+        }, 2000);
+      } else {
+        const data = await res.json();
+        setError(data.error || "Erro ao enviar");
+        setStatus("error");
+      }
+    } catch {
+      setError("Erro de conexão");
+      setStatus("error");
     }
-    setOpen(false);
   }
 
   if (!open) return null;
@@ -30,7 +56,7 @@ export default function ModalSimulacao() {
       <div className="bg-white rounded-2xl shadow-2xl p-6 w-full max-w-sm mx-2 relative">
         <button
           className="absolute top-3 right-3 text-gray-400 hover:text-gray-700"
-          onClick={() => setOpen(false)}
+          onClick={onClose}
           aria-label="Fechar"
         >
           <svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
@@ -56,6 +82,23 @@ export default function ModalSimulacao() {
             autoFocus
           />
           <input
+            type="number"
+            className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#3f17cc]"
+            placeholder="Sua idade"
+            value={idade}
+            onChange={e => setIdade(e.target.value)}
+            required
+            min="0"
+          />
+          <input
+            type="email"
+            className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#3f17cc]"
+            placeholder="Seu email"
+            value={email}
+            onChange={e => setEmail(e.target.value)}
+            required
+          />
+          <input
             type="tel"
             className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#3f17cc]"
             placeholder="Seu número de WhatsApp"
@@ -63,12 +106,28 @@ export default function ModalSimulacao() {
             onChange={e => setNumero(e.target.value)}
             required
           />
+          <input
+            type="number"
+            className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#3f17cc]"
+            placeholder="Quantidade de pessoas"
+            value={qtdPessoas}
+            onChange={e => setQtdPessoas(e.target.value)}
+            required
+            min="1"
+          />
           <button
             type="submit"
             className="w-full bg-[#3f17cc] text-white py-2 rounded-lg font-semibold hover:bg-[#2a128a] transition-all mt-2"
+            disabled={status === 'loading'}
           >
-            Simular agora
+            {status === 'loading' ? 'Enviando...' : 'Simular agora'}
           </button>
+          {status === 'success' && (
+            <p className="text-green-600 text-center">Lead enviado com sucesso!</p>
+          )}
+          {status === 'error' && (
+            <p className="text-red-600 text-center">{error}</p>
+          )}
         </form>
       </div>
     </div>
