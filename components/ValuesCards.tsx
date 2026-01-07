@@ -20,7 +20,7 @@ export default function ValuesCards() {
         <h2 className="text-3xl md:text-4xl font-bold text-center mb-10 text-balance text-[#3f17cc]">Valores a partir de</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-10 max-w-4xl mx-auto">
           {/* Card Adesão */}
-          <div className="bg-white rounded-3xl shadow-2xl border-2 border-[#e3e6f0] flex flex-col items-center p-10 transition-all hover:scale-[1.03] min-h-[420px]">
+          <div className="bg-white rounded-3xl shadow-2xl border-2 border-[#e3e6f0] flex flex-col items-center p-10 transition-all hover:scale-[1.03] min-h-[420px] animate-fade-in-up" style={{ animationDelay: '80ms' }}>
             <div className="w-full h-36 bg-gray-100 rounded-xl mb-6 flex items-center justify-center">
      <Image src="/images/familia-card.png" alt="Camera Icon" width={800} height={400} />
             </div>
@@ -43,7 +43,7 @@ export default function ValuesCards() {
             </div>
           </div>
           {/* Card Empresarial */}
-          <div className="bg-white rounded-3xl shadow-2xl border-2 border-[#e3e6f0] flex flex-col items-center p-10 transition-all hover:scale-[1.03] min-h-[420px]">
+          <div className="bg-white rounded-3xl shadow-2xl border-2 border-[#e3e6f0] flex flex-col items-center p-10 transition-all hover:scale-[1.03] min-h-[420px] animate-fade-in-up" style={{ animationDelay: '200ms' }}>
             <div className="w-full h-36 bg-gray-100 rounded  rounded-xl mb-6 flex items-center justify-center">
                 <Image src="/images/empresarial-card.png" alt="Camera Icon" width={800} height={400} />
 

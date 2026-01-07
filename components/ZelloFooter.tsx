@@ -44,6 +44,14 @@ export function ZelloFooter() {
                   Simulador
                 </Link>
               </li>
+              <li>
+                <Link
+                  href="/privacidade"
+                  className="text-sm text-muted-foreground hover:text-[#3f17cc] transition-colors"
+                >
+                  Política de Privacidade
+                </Link>
+              </li>
             </ul>
           </div>
 

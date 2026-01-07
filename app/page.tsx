@@ -5,6 +5,7 @@ import { ZelloDifferentials } from "@/components/ZelloDifferentials"
 import { ZelloSimulator } from "@/components/ZelloSimulator"
 import { ZelloFooter } from "@/components/ZelloFooter"
 import ValuesCards from "@/components/ValuesCards"
+import TestimonialsSection from "@/components/TestimonialsSection"
 
 export default function Page() {
   return (
@@ -14,6 +15,7 @@ export default function Page() {
       <ZelloPartners />
       <ValuesCards />
       <ZelloDifferentials />
+      <TestimonialsSection />
       <ZelloSimulator />
       <ZelloFooter />
     </>

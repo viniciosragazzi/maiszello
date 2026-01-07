@@ -3,6 +3,7 @@
 import type React from "react"
 
 import { useState } from "react"
+import { toast } from "@/components/ui/use-toast"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
@@ -17,15 +18,45 @@ export function ZelloSimulator() {
     dependents: "",
   })
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const [loading, setLoading] = useState(false)
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-
-    const message = `Olá +Zello, meu nome é ${formData.name}, tenho ${formData.age} anos e gostaria de uma cotação para ${
-      Number.parseInt(formData.dependents) + 1
-    } pessoa(s). Meu WhatsApp é ${formData.whatsapp}.`
-
-    const whatsappUrl = `https://wa.me/5521972999798?text=${encodeURIComponent(message)}`
-    window.open(whatsappUrl, "_blank")
+    setLoading(true)
+    try {
+      const res = await fetch("/api/send-lead", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          nome: formData.name,
+          idade: formData.age,
+          email: formData.whatsapp, // WhatsApp no campo email para manter compatibilidade, pode ajustar se quiser campo separado
+          numero: formData.whatsapp,
+          qtdPessoas: (Number.parseInt(formData.dependents) + 1).toString(),
+        }),
+      })
+      if (res.ok) {
+        toast({
+          title: "Recebemos sua simulação!",
+          description: "Em breve entraremos em contato.",
+        })
+        setFormData({ name: "", whatsapp: "", age: "", dependents: "" })
+      } else {
+        toast({
+          title: "Erro ao enviar simulação",
+          description: "Tente novamente ou fale com um consultor.",
+          variant: "destructive",
+        })
+      }
+    } catch {
+      toast({
+        title: "Erro de conexão",
+        description: "Verifique sua internet e tente novamente.",
+        variant: "destructive",
+      })
+    } finally {
+      setLoading(false)
+    }
   }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -122,16 +153,16 @@ export function ZelloSimulator() {
                   type="submit"
                   size="lg"
                   className="w-full bg-[#3f17cc] hover:bg-[#3f17cc]/90 text-white text-lg h-14"
+                  disabled={loading}
                 >
-                  Enviar e Simular Agora
+                  {loading ? "Enviando..." : "Enviar e Simular Agora"}
                 </Button>
               </form>
             </CardContent>
           </Card>
 
           <p className="text-center text-sm text-muted-foreground mt-6">
-            Ao clicar em &quot;Enviar e Simular Agora&quot;, você será direcionado para o WhatsApp com suas informações
-            preenchidas.
+            Ao clicar em &quot;Enviar e Simular Agora&quot;, você receberá um contato personalizado em breve.
           </p>
         </div>
       </div>

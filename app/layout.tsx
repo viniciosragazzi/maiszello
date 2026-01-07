@@ -4,7 +4,10 @@ import { Figtree, Inter, Geist_Mono } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
 import "./globals.css"
 import ChatWidget from "../components/ChatWidget"
-import ModalSimulacao from "../components/ModalSimulacao"
+import GlobalModalSimulacao from "../components/GlobalModalSimulacao"
+import CookieBanner from "../components/CookieBanner"
+import AccessibilityClientEffect from "../components/AccessibilityClientEffect"
+import DarkModeToggle from "../components/DarkModeToggle"
 
 const figtree = Figtree({
   subsets: ["latin"],
@@ -41,10 +44,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.variable} ${figtree.variable} ${geistMono.variable} font-sans antialiased`}>
-        {children}
-        <ModalSimulacao />
-        <ChatWidget />
-        <Analytics />
+            {children}
+            <GlobalModalSimulacao />
+            <ChatWidget />
+            <CookieBanner />
+            <DarkModeToggle />
+            <Analytics />
+            <AccessibilityClientEffect />
       </body>
     </html>
   )
